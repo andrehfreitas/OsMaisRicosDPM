@@ -1,17 +1,22 @@
 package br.edu.ifsp.scl.osmaisricos;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.Toast;
-
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+
+// TRABALHO AVALIATIVO NÚMERO 02: LISTA COM RECYCLERVIEW
+//
+// Nome do aluno: André Henrique de Freitas - SC3009408
+// Disciplina: DPM
+// Professor: Carlos José de Almeida Pereira (“Carlão”)
+
 
 public class MainActivity extends AppCompatActivity {
 
