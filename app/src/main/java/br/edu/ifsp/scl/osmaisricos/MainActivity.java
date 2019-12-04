@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -23,11 +27,47 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Colocando as pessoas ricas na lista
         geraRicos();
 
         //Criando o adapter
         RicosAdapter adapter = new RicosAdapter(pessoasRicas);
         recyclerView.setAdapter(adapter);
+
+        //---------------------------------------------------------------------------------------------------//
+
+        // Configurando tratamento de eventos na lista
+
+        // Criando o escutador de clique no ITEM: Objeto da classe interna
+        EscutadorCliqueItemLista escutadorCliqueItemLista = new EscutadorCliqueItemLista();
+
+        // Criando o escutador de clique na LISTA: Objeto da classe RecyclerItemClilckListener
+        RecyclerItemClickListener escutadorLista = new RecyclerItemClickListener(getApplicationContext(),
+                                                                                 recyclerView,
+                                                                                 escutadorCliqueItemLista);
+
+        // Associando o escutador na lista
+        recyclerView.addOnItemTouchListener(escutadorLista);
+
+        //---------------------------------------------------------------------------------------------------//
+    }
+
+
+    // Classe interna do escutador de cliques nos itens da lista
+    private class EscutadorCliqueItemLista implements RecyclerItemClickListener.OnItemClickListener {
+
+        // Tratamento do clique normal
+        @Override
+        public void onItemClick(View view, int position) {
+            String nome = pessoasRicas.get(position).getNome();
+            Snackbar.make(view, "Clique SIMPLES: " + nome, Snackbar.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onLongItemClick(View view, int position) {
+            String nome = pessoasRicas.get(position).getNome();
+            Snackbar.make(view, "Clique DUPLO: " + nome, Snackbar.LENGTH_LONG).show();
+        }
     }
 
 

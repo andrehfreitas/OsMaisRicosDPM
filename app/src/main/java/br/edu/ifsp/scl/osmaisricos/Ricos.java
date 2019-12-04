@@ -28,10 +28,6 @@ public class Ricos {
         this.foto = foto;
     }
 
-    public int getId_() {
-        return id_;
-    }
-
     public String getPosicao() {
         return posicao;
     }
